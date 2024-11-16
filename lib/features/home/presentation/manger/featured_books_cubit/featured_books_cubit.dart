@@ -1,20 +1,18 @@
-// features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart
-import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 
-import '../../../domain/entities/book_entity.dart';
-import '../../../domain/use_cases/fetchFeaturedBooks_use_cases.dart';
-
+import 'package:book/features/home/domain/entities/book_entity.dart';
+import 'package:book/features/home/domain/use_cases/fetchFeaturedBooks_use_cases.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 part 'featured_books_state.dart';
 
 class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
-  FeaturedBooksCubit(this.fetchfeaturedbooksUseCases,) : super(FeaturedBooksInitial());
+  FeaturedBooksCubit(this.featuredBooksUseCase) : super(FeaturedBooksInitial());
 
-  final FetchfeaturedbooksUseCases fetchfeaturedbooksUseCases;
-
+  final FetchFeaturedBooksUseCase featuredBooksUseCase;
   Future<void> fetchFeaturedBooks() async {
     emit(FeaturedBooksLoading());
-    var result = await fetchfeaturedbooksUseCases.call();
+    print('FeaturedBooksLoading11');
+    var result = await featuredBooksUseCase.call();
+    print('FeaturedBooksLoading22');
     result.fold((failure) {
       emit(FeaturedBooksFailure(failure.errMessage));
     }, (books) {

@@ -1,8 +1,8 @@
 // features/home/data/data_source/home_local_data_source.dart
+import 'package:book/constants.dart';
+import 'package:book/features/home/domain/entities/book_entity.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../../../constants.dart';
-import '../../domain/entities/book_entity.dart';
 
 abstract class HomeLocalDataSource{
   List<BookEntity>fetchFeaturedBooks();

@@ -1,11 +1,10 @@
 // features/home/presentation/views/widgets/featured_list_view.dart
+import 'package:book/core/utils/assets.dart';
+import 'package:book/core/widgets/custom_error_widget.dart';
+import 'package:book/core/widgets/custom_loading_indicator.dart';
+import 'package:book/features/home/presentation/manger/featured_books_cubit/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../../core/utils/assets.dart';
-import '../../../../../core/widgets/custom_error_widget.dart';
-import '../../../../../core/widgets/custom_loading_indicator.dart';
-import '../../manger/featured_books_cubit/featured_books_cubit.dart';
 import 'custom_book_item.dart';
 
 class FeaturedBooksListView extends StatelessWidget {
@@ -20,7 +19,11 @@ class FeaturedBooksListView extends StatelessWidget {
       return FeaturedBooksBuilder(context);
                 }else if (state is FeaturedBooksFailure) {
           return CustomErrorWidget(errMessage: state.errMessage);
-        } else {
+        }
+                else if(state is FeaturedBooksFailure){
+                  return Text('${state.errMessage}');
+                }
+                else {
           return const CustomLoadingIndicator();
         }
       }
