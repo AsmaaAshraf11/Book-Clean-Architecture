@@ -1,11 +1,11 @@
 // features/home/data/repos/home_repo_impl.dart
 import 'package:book/core/errors/failures.dart';
+import 'package:book/features/home/data/data_source/home_local_data_source.dart';
+import 'package:book/features/home/data/data_source/home_remote_data_source.dart';
 import 'package:book/features/home/domain/entities/book_entity.dart';
+import 'package:book/features/home/domain/repos/hom_repo.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../domain/repos/hom_repo.dart';
-import '../data_source/home_local_data_source.dart';
-import '../data_source/home_remote_data_source.dart';
 
 class HomeRepoImpl implements HomRepo {
       final HomeRemoteDataSource homeRemoteDataSource;
