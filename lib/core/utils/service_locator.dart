@@ -55,14 +55,12 @@ void _registerApiService() {
 }
 
 void _registerRepositories() {
-  final apiService = getIt.get<ApiService>();
-
-  // getIt
-  //   .registerSingleton<HomeRepoImpl>(HomeRepoImpl(
-  //      homeRemoteDataSource: HomeRemoteDataSourceImpl(
-  //       ApiService(Dio())
-  //       ),
-  //       HhmeLocalDataSource: HomeLocalDataSourceIml()
-  //       ),
-  //       );
+  getIt.registerSingleton<HomeRepoImpl>(
+    HomeRepoImpl(
+      homeLocalDataSource: HomeLocalDataSourceIml(),
+      homeRemoteDataSource: HomeRemoteDataSourceImpl(
+        getIt.get<ApiService>(),
+      ),
+    ),
+  );
 }

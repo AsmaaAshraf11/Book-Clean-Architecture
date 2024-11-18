@@ -1,3 +1,4 @@
+// features/home/domain/entities/book_entity.g.dart
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 part of 'book_entity.dart';
@@ -19,7 +20,7 @@ class BookEntityAdapter extends TypeAdapter<BookEntity> {
     return BookEntity(
       image: fields[1] as String?,
       title: fields[2] as String,
-      authorName: fields[3] as String?,
+      authorName: fields[3] as String,
       price: fields[4] as num?,
       rating: fields[5] as num?,
       bookId: fields[0] as String,

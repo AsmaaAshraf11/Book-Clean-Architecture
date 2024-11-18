@@ -17,7 +17,7 @@ class FetchNewestbooksUseCases extends UseCases<List<BookEntity>,void> {
   // }
     @override
       Future <Either<Failure,List<BookEntity>>>call([parameter ]){
-      return homRepo.fetchFeaturedBooks();
+      return homRepo.fetchNewsetBooks();
     }
 
 }

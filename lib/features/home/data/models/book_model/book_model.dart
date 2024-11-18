@@ -1,7 +1,6 @@
 // features/home/data/models/book_model/book_model.dart
-import 'package:equatable/equatable.dart';
+import 'package:book/features/home/domain/entities/book_entity.dart';
 
-import '../../../domain/entities/book_entity.dart';
 import 'access_info.dart';
 import 'sale_info.dart';
 import 'search_info.dart';
@@ -56,13 +55,12 @@ class BookModel  extends BookEntity {
         'id': id,
         'etag': etag,
         'selfLink': selfLink,
-        'volumeInfo': volumeInfo?.toJson(),
+        'volumeInfo': volumeInfo.toJson(),
         'saleInfo': saleInfo?.toJson(),
         'accessInfo': accessInfo?.toJson(),
         'searchInfo': searchInfo?.toJson(),
       };
 
-  @override
   List<Object?> get props {
     return [
       kind,

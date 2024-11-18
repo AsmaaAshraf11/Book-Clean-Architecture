@@ -8,51 +8,37 @@ import 'package:dartz/dartz.dart';
 
 
 class HomeRepoImpl implements HomRepo {
-      final HomeRemoteDataSource homeRemoteDataSource;
-          final HomeLocalDataSource HhmeLocalDataSource;
+  final HomeRemoteDataSource homeRemoteDataSource;
+  final HomeLocalDataSource homeLocalDataSource;
 
-  HomeRepoImpl({required this.homeRemoteDataSource, required this.HhmeLocalDataSource});
-
+  HomeRepoImpl(
+      {required this.homeRemoteDataSource, required this.homeLocalDataSource});
 
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks()async {
-    
-      try {
-        List<BookEntity>booksList;
-    // TODO: implement fetchFeaturedBooks
-     booksList= HhmeLocalDataSource.fetchFeaturedBooks();
-    if(booksList.isNotEmpty){
-    return right(booksList);
+  Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks({int PageNamber = 0}) async {
+    try {
+      List<BookEntity> booksList = [];
+      // booksList = homeLocalDataSource.fetchFeaturedBooks();
+      // if (booksList.isNotEmpty) {
+      //   return right(booksList);
+      // }
+      booksList = await homeRemoteDataSource.fetchFeaturedBooks();
+
+      return right(booksList);
+    } on Exception catch (e) {
+      return left(ServerFailure(e.toString()));
     }
-    booksList =await homeRemoteDataSource.fetchFeaturedBooks();
-    
-    return right(booksList);
-    
-  }on Exception catch (e) {
-        return left(
-           ServerFailure(e.toString())
-        );
-      }
   }
 
   @override
-  Future<Either<Failure, List<BookEntity>>> fetchNewsetBooks()async {
+  Future<Either<Failure, List<BookEntity>>> fetchNewsetBooks() async {
     // TODO: implement fetchNewsetBooks
-try {
-        List<BookEntity>books;
-    // TODO: implement fetchFeaturedBooks
-     books= HhmeLocalDataSource.fetchNewsetBooks();
-    if(books.isNotEmpty){
-    return right(books);
+    try {
+      List<BookEntity> books=[];
+       books = await homeRemoteDataSource.fetchNewestBooks();
+      return right(books);
+    } on Exception catch (e) {
+      return left(ServerFailure(e.toString()));
     }
-    books =await homeRemoteDataSource.fetchNewsetBooks();
-    
-    return right(books);
-    
-  }on Exception catch (e) {
-        return left(
-           ServerFailure(e.toString())
-        );
-      }  }
-  
+  }
 }
